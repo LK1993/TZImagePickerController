@@ -79,6 +79,12 @@
     if (self.assetCellDidSetModelBlock) {
         self.assetCellDidSetModelBlock(self, _imageView, _selectImageView, _indexLabel, _bottomView, _timeLength, _videoImgView);
     }
+    
+    if ([[TZImageManager manager] isAssetCannotBeSelected2:self.model.asset]) {
+        self.cannotSelectLayerButton.hidden = NO;
+    } else {
+        self.cannotSelectLayerButton.hidden = YES;
+    }
 }
 
 - (void)setIndex:(NSInteger)index {
@@ -237,7 +243,8 @@
     }
     self.indexLabel.hidden = !self.selectPhotoButton.isSelected;
     BOOL notSelectable = [TZCommonTools isAssetNotSelectable:self.model tzImagePickerVc:tzImagePickerVc];
-    if (notSelectable && tzImagePickerVc.showPhotoCannotSelectLayer && !self.model.isSelected) {
+    if ((notSelectable && tzImagePickerVc.showPhotoCannotSelectLayer && !self.model.isSelected) || ([[TZImageManager manager] isAssetCannotBeSelected2:self.model.asset]))
+    {
         self.cannotSelectLayerButton.backgroundColor = tzImagePickerVc.cannotSelectLayerColor;
         self.cannotSelectLayerButton.hidden = NO;
     } else {
@@ -300,6 +307,8 @@
         UIButton *cannotSelectLayerButton = [[UIButton alloc] init];
         [self.contentView addSubview:cannotSelectLayerButton];
         _cannotSelectLayerButton = cannotSelectLayerButton;
+        _cannotSelectLayerButton.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
+        _cannotSelectLayerButton.hidden = YES;
     }
     return _cannotSelectLayerButton;
 }

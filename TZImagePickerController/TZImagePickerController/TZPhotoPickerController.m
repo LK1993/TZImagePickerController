@@ -644,7 +644,7 @@ static CGFloat itemMargin = 5;
     cell.allowPreview = tzImagePickerVc.allowPreview;
     
     BOOL notSelectable = [TZCommonTools isAssetNotSelectable:model tzImagePickerVc:tzImagePickerVc];
-    if (notSelectable && tzImagePickerVc.showPhotoCannotSelectLayer && !model.isSelected) {
+    if ((notSelectable && tzImagePickerVc.showPhotoCannotSelectLayer && !model.isSelected) || ([[TZImageManager manager] isAssetCannotBeSelected2:model.asset])) {
         cell.cannotSelectLayerButton.backgroundColor = tzImagePickerVc.cannotSelectLayerColor;
         cell.cannotSelectLayerButton.hidden = NO;
     } else {

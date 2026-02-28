@@ -348,6 +348,11 @@
 // Decide asset can be selected
 // 决定照片能否被选中
 - (BOOL)isAssetCanBeSelected:(PHAsset *)asset;
+
+// Decide asset can be selected
+// 决定照片能否被选中
+- (BOOL)isAssetCanBeSelected2:(PHAsset *)asset;
+
 @end
 
 

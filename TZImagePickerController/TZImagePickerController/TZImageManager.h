@@ -117,6 +117,9 @@
 /// 检查照片能否被选中
 - (BOOL)isAssetCannotBeSelected:(PHAsset *)asset;
 
+/// 检查照片能否被选中2
+- (BOOL)isAssetCannotBeSelected2:(PHAsset *)asset;
+
 /// 修正图片转向
 - (UIImage *)fixOrientation:(UIImage *)aImage;
 
